@@ -426,13 +426,25 @@ const SandboxRepoListPage: React.FC<RepoListProps> = ({ useRepoStore }) => {
 
     return 0
   })
+  const formatDate = date => {
+    const locale = navigator.language || 'en'
+    return new Intl.DateTimeFormat(locale, {
+      dateStyle: 'medium',
+      timeStyle: 'short'
+    }).format(date)
+  }
+
+  // const reposWithFormattedDates = sortedRepos.map(repo => ({
+  //   ...repo,
+  //   timestamp: formatDistanceToNow(new Date(repo.createdAt), {
+  //     addSuffix: true,
+  //     includeSeconds: true
+  //   }).replace('about ', '')
+  // }))
 
   const reposWithFormattedDates = sortedRepos.map(repo => ({
     ...repo,
-    timestamp: formatDistanceToNow(new Date(repo.createdAt), {
-      addSuffix: true,
-      includeSeconds: true
-    }).replace('about ', '')
+    timestamp: formatDate(new Date(repo.createdAt))
   }))
 
   const { query, handleSearch } = useCommonFilter()
@@ -486,6 +498,7 @@ const SandboxRepoListPage: React.FC<RepoListProps> = ({ useRepoStore }) => {
           <Spacer size={5} />
           <RepoList
             repos={reposWithFormattedDates}
+            // repos={sortedRepos}
             LinkComponent={LinkComponent}
             handleResetFilters={filterHandlers.handleResetFilters}
             hasActiveFilters={filterHandlers.activeFilters.length > 0}
