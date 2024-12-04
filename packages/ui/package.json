@@ -43,6 +43,7 @@
   },
   "homepage": "https://github.com/harness/canary",
   "dependencies": {
+    "@harnessio/views": "workspace:*",
     "@git-diff-view/react": "^0.0.20",
     "@git-diff-view/shiki": "^0.0.20",
     "diff2html": "3.4.22",

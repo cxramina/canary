@@ -16,3 +16,7 @@ export * from '@views/repo/repo.types'
 
 // repo files
 export * from '@views/repo/repo-files'
+
+// repo settings
+export * from '@views/repo/repo-settings'
+export * from '@views/repo/repo-settings/types'

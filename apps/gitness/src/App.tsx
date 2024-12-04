@@ -34,6 +34,7 @@ import SandboxPullRequestListPage from './pages-v2/pull-request/pull-request-lis
 import { RepoCode } from './pages-v2/repo/repo-code'
 import RepoLayout from './pages-v2/repo/repo-layout'
 import ReposListPage from './pages-v2/repo/repo-list'
+import { RepoSettingsGeneralPageContainer } from './pages-v2/repo/repo-settings-general-container'
 import { RepoSidebar } from './pages-v2/repo/repo-sidebar'
 import RepoSummaryPage from './pages-v2/repo/repo-summary'
 import WebhookListPage from './pages-v2/webhooks/webhook-list'
@@ -66,7 +67,7 @@ import { RepoFiles } from './pages/repo/repo-files'
 import { RepoHeader } from './pages/repo/repo-header'
 import { RepoImportContainer } from './pages/repo/repo-import-container'
 import ReposListPageV1 from './pages/repo/repo-list'
-import { RepoSettingsGeneralPageContainer } from './pages/repo/repo-settings-general-container'
+// import { RepoSettingsGeneralPageContainer } from './pages/repo/repo-settings-general-container'
 import RepoSummaryPageV1 from './pages/repo/repo-summary'
 import { SignIn } from './pages/signin'
 import { SignUp } from './pages/signup'
@@ -170,6 +171,20 @@ export default function App() {
             {
               path: 'pulls/:pullRequestId',
               element: <>test</>
+            },
+            {
+              path: 'settings',
+              element: <RepoSettingsPage />,
+              children: [
+                {
+                  index: true,
+                  element: <Navigate to="general" replace />
+                },
+                {
+                  path: 'general',
+                  element: <RepoSettingsGeneralPageContainer />
+                }
+              ]
             }
           ]
         },
