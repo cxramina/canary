@@ -3,6 +3,8 @@ import GraphProvider from './context/GraphProvider'
 import PipelineGraphInternal, { PipelineGraphInternalProps } from './pipeline-graph-internal'
 import { NodeContent } from './types/node-content'
 
+import './pipeline-graph.css'
+
 export interface PipelineGraphProps extends PipelineGraphInternalProps {
   nodes: NodeContent[]
 }

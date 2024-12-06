@@ -22,6 +22,8 @@ import { SerialGroupNodeContent } from './graph-implementation/nodes/stage-node'
 import { StartNode } from './graph-implementation/nodes/start-node'
 import { StepNode } from './graph-implementation/nodes/step-node'
 
+import '@harnessio/pipeline-graph/dist/index.css'
+
 const nodes: NodeContent[] = [
   {
     type: ContentNodeTypes.start,
