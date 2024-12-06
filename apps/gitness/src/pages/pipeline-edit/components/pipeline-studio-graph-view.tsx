@@ -2,7 +2,14 @@ import { useEffect, useState } from 'react'
 
 import { parse } from 'yaml'
 
-import { AnyNodeType, ContainerNode, LeafNodeType, NodeContent, PipelineGraph } from '@harnessio/pipeline-graph'
+import {
+  AnyNodeType,
+  CanvasProvider,
+  ContainerNode,
+  LeafNodeType,
+  NodeContent,
+  PipelineGraph
+} from '@harnessio/pipeline-graph'
 
 import { usePipelineDataContext } from '../context/PipelineStudioDataProvider'
 // import { usePipelineViewContext } from '../context/PipelineStudioViewProvider'
@@ -38,6 +45,11 @@ const nodes: NodeContent[] = [
   },
   {
     type: ContentNodeTypes.serial,
+    containerType: ContainerNode.serial,
+    component: SerialGroupNodeContent
+  },
+  {
+    type: ContentNodeTypes.stage,
     containerType: ContainerNode.serial,
     component: SerialGroupNodeContent
   }
@@ -90,14 +102,16 @@ export const PipelineStudioGraphView = (): React.ReactElement => {
 
   return (
     <div className="relative flex size-full">
-      <PipelineGraph
-        data={data}
-        nodes={nodes}
-        onAdd={() => undefined}
-        onDelete={() => undefined}
-        onSelect={() => undefined}
-      />
-      <CanvasControls />
+      <CanvasProvider>
+        <PipelineGraph
+          data={data}
+          nodes={nodes}
+          onAdd={() => undefined}
+          onDelete={() => undefined}
+          onSelect={() => undefined}
+        />
+        <CanvasControls />
+      </CanvasProvider>
     </div>
   )
 }

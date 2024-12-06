@@ -1,3 +1,5 @@
+import { useCanvasContext } from '@harnessio/pipeline-graph'
+
 import { CanvasButton } from './CanvasButton'
 
 export function CanvasControls() {

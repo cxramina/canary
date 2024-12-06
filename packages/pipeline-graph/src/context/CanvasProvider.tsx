@@ -41,7 +41,7 @@ export interface CanvasProviderProps {
   children: React.ReactNode
 }
 
-const CanvasProvider = ({
+export const CanvasProvider = ({
   children,
   config = { minScale: 0.1, maxScale: 10, scaleFactor: 0.3, paddingForFit: 20 }
 }: CanvasProviderProps) => {
@@ -146,8 +146,6 @@ const CanvasProvider = ({
     </CanvasContext.Provider>
   )
 }
-
-export default CanvasProvider
 
 export const useCanvasContext = () => {
   return useContext(CanvasContext)
