@@ -116,11 +116,7 @@ export const Navbar = ({
       </NavbarSkeleton.Content>
 
       <NavbarSkeleton.Footer>
-        {!isEmpty(currentUser) ? (
-          <NavbarUser currentUser={currentUser} handleCustomNav={handleCustomNav} handleLogOut={handleLogOut} t={t} />
-        ) : (
-          <Button onClick={() => navigate('/signin')}>Sign In</Button>
-        )}
+        <NavbarUser currentUser={currentUser} handleCustomNav={handleCustomNav} handleLogOut={handleLogOut} t={t} />
       </NavbarSkeleton.Footer>
     </NavbarSkeleton.Root>
   )

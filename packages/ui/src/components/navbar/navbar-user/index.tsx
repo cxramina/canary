@@ -1,5 +1,5 @@
 import { Fragment, useMemo } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import {
   Avatar,
@@ -16,12 +16,15 @@ import {
 import { TypesUser } from '@/types'
 import { cn } from '@utils/cn'
 import { getInitials } from '@utils/stringUtils'
+import { DemoStockAvatar } from '@views/demo/stock-avatar'
 import { TFunction } from 'i18next'
+import { isEmpty } from 'lodash-es'
 
 import { getUserMenuItems } from '../data'
 import { UserMenuKeys } from '../types'
 
 interface UserBlockProps {
+  currentUser: TypesUser | undefined
   username: string
   email?: string
   url?: string
@@ -29,8 +32,9 @@ interface UserBlockProps {
   className?: string
 }
 
-const UserBlock = ({ username, email, url, isButton = false, className }: UserBlockProps) => {
+const UserBlock = ({ currentUser, username, email, url, isButton = false, className }: UserBlockProps) => {
   const Tag = isButton ? 'button' : 'div'
+  const navigate = useNavigate()
 
   return (
     <Tag
@@ -43,14 +47,36 @@ const UserBlock = ({ username, email, url, isButton = false, className }: UserBl
         <div className="absolute -inset-2 rounded duration-100 ease-in-out group-hover:bg-background-4 group-data-[state=open]:bg-background-4" />
       )}
       <div className="col-start-1 row-span-2">
-        <Avatar className="overflow-hidden rounded-md" size="8">
-          {!!url && <AvatarImage src={url} alt="user" />}
-          <AvatarFallback>{getInitials(username)}</AvatarFallback>
+        <Avatar className="overflow-hidden rounded-full" size="8">
+          {/* {!!url && <AvatarImage src={url} alt="user" />}
+          <AvatarFallback>{getInitials(username)}</AvatarFallback> */}
+          <DemoStockAvatar />
         </Avatar>
       </div>
-      <p className="col-start-2 row-start-1 truncate text-13 font-medium leading-tight text-foreground-1">{username}</p>
-      {!!email && (
-        <p className="col-start-2 row-start-2 truncate text-13 font-normal leading-tight text-foreground-4">{email}</p>
+      {!isEmpty(currentUser) && (
+        <>
+          <p className="col-start-2 row-start-1 truncate text-13 font-medium leading-tight text-foreground-1">
+            {username}
+          </p>
+          {!!email && (
+            <p className="col-start-2 row-start-2 truncate text-13 font-normal leading-tight text-foreground-4">
+              {email}
+            </p>
+          )}
+        </>
+      )}
+      {isEmpty(currentUser) && (
+        <>
+          <p className="col-start-2 row-start-1 truncate text-13 font-medium leading-tight text-foreground-1">
+            Welcome back
+          </p>
+          <p
+            onClick={() => navigate('/signin')}
+            className="col-start-2 row-start-2 truncate text-13 font-normal leading-tight text-foreground-4"
+          >
+            Sign in
+          </p>
+        </>
       )}
     </Tag>
   )
@@ -113,7 +139,13 @@ export const NavbarUser = ({ currentUser, handleCustomNav, handleLogOut, t }: Na
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <div>
-          <UserBlock username={username} email={currentUser?.email} url={currentUser?.url} isButton />
+          <UserBlock
+            currentUser={currentUser}
+            username={username}
+            email={currentUser?.email}
+            url={currentUser?.url}
+            isButton
+          />
         </div>
       </DropdownMenuTrigger>
 
@@ -124,7 +156,13 @@ export const NavbarUser = ({ currentUser, handleCustomNav, handleLogOut, t }: Na
           sideOffset={-40}
           alignOffset={187}
         >
-          <UserBlock className="p-2" username={username} email={currentUser?.email} url={currentUser?.url} />
+          <UserBlock
+            className="p-2"
+            currentUser={currentUser}
+            username={username}
+            email={currentUser?.email}
+            url={currentUser?.url}
+          />
           <DropdownMenuSeparator />
           {menuItems.map(itm => {
             return (

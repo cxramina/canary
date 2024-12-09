@@ -24,6 +24,8 @@ export const SkeletonList = ({ className }: SkeletonListProps) => {
     setVisible(true)
   }, [])
 
+  return null // Demo only disable because there is still a loading render issue
+
   return (
     <div
       className={cn(
