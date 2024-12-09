@@ -17,13 +17,6 @@
     "lastCommit": "Dernier message de validation",
     "date": "Date",
     "search": "Recherche",
-    "summary": "Résumé",
-    "files": "Fichiers",
-    "pipelines": "Pipelines",
-    "commits": "Validations",
-    "pull-requests": "Requêtes de tirage",
-    "webhooks": "Webhooks",
-    "settings": "Paramètres",
     "repositories": "Dépôts",
     "create-repository": "Créer un dépôt",
     "private": "Privé",
@@ -31,6 +24,13 @@
     "add-file": "Ajouter un fichier",
     "createNewFile": "+ Créer un nouveau fichier",
     "readme": "README.md",
+    "summary": "Résumé",
+    "commits": "Validations",
+    "files": "Fichiers",
+    "pipelines": "Pipelines",
+    "pull-requests": "Requêtes de tirage",
+    "webhooks": "Webhooks",
+    "settings": "Paramètres",
     "openPullReq": "Requêtes de tirage ouvertes"
   }
 }

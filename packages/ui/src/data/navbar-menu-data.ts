@@ -12,7 +12,7 @@ export const getNavbarMenuData = (t: TFunction): MenuGroupType[] => [
         iconName: 'repositories-gradient',
         title: t('component:navbar.repositories'),
         description: 'Integrated & familiar git experience.',
-        to: '/new-ux/repos'
+        to: '/delight/repos'
       },
       {
         id: 1,

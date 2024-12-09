@@ -26,7 +26,7 @@ const DemoTopBar: FC = () => {
           <>
             <BreadcrumbSeparator>&nbsp;/&nbsp;</BreadcrumbSeparator>
             <BreadcrumbItem>
-              <BreadcrumbLink href="/new-ux/repos">Repositories</BreadcrumbLink>
+              <BreadcrumbLink href="/delight/repos">Repositories</BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator>&nbsp;/&nbsp;</BreadcrumbSeparator>
             <BreadcrumbItem>

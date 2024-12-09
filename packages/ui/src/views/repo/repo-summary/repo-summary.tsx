@@ -179,40 +179,6 @@ export function RepoSummaryView({
         </SandboxLayout.Column>
         <SandboxLayout.Column>
           <SandboxLayout.Content className="sticky top-[100px] pl-0 flex flex-col gap-7">
-            {/* <SummaryPanel
-              title={t('views:repos.summary', 'Summary')}
-              details={[
-                {
-                  id: '0',
-                  name: t('views:repos.commits', 'Commits'),
-                  count: default_branch_commit_count,
-                  iconName: 'tube-sign'
-                },
-                {
-                  id: '1',
-                  name: t('views:repos.branches', 'Branches'),
-                  count: branch_count,
-                  iconName: 'branch'
-                },
-                {
-                  id: '2',
-                  name: t('views:repos.tags', 'Tags'),
-                  count: tag_count,
-                  iconName: 'tag'
-                },
-                {
-                  id: '3',
-                  name: t('views:repos.openPullReq', 'Open pull requests'),
-                  count: pull_req_summary?.open_count || 0,
-                  iconName: 'open-pr'
-                }
-              ]}
-              description={repository?.description}
-              onChangeDescription={onChangeDescription}
-              isEditingDescription={isEditingDescription}
-              setIsEditingDescription={setIsEditingDescription}
-              saveDescription={saveDescription}
-            /> */}
             <div className="flex flex-col gap-3">
               <div className="flex gap-2.5 justify-between items-center">
                 <Text size={3} className="tracking-snug text-foreground-1 col-span-2">
@@ -265,7 +231,7 @@ export function RepoSummaryView({
                   Code vulnerabilities
                 </Text>
                 <Badge size={'sm'} theme="emphasis">
-                  3
+                  2
                 </Badge>
               </div>
               <div className="flex flex-col gap-5">
@@ -295,11 +261,11 @@ export function RepoSummaryView({
                 <div className="relative flex w-full py-5 px-5 bg-background-4 flex-col items-center gap-2.5 text-center border rounded-md">
                   <div className="flex flex-col items-center gap-1">
                     <Text className="leading-snug text-foreground-1" size={2} weight="normal">
-                      App.tsx
+                      .gitignore
                     </Text>
                     <Spacer size={2} />
-                    <Text className="leading-snug text-warning" size={1}>
-                      2 medium issues
+                    <Text className="leading-snug text-emphasis" size={1}>
+                      1 medium issue
                     </Text>
                     <Spacer size={3} />
                     <Button

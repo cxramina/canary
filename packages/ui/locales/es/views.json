@@ -17,13 +17,6 @@
     "lastCommit": "Last commit message",
     "date": "Date",
     "search": "",
-    "summary": "Summary",
-    "files": "Files",
-    "pipelines": "Pipelines",
-    "commits": "Commits",
-    "pull-requests": "Pull Requests",
-    "webhooks": "Webhooks",
-    "settings": "Settings",
     "repositories": "",
     "create-repository": "",
     "private": "Private",
@@ -31,6 +24,13 @@
     "add-file": "Add file",
     "createNewFile": "+ Create New File",
     "readme": "README.md",
+    "summary": "Summary",
+    "commits": "Commits",
+    "files": "Files",
+    "pipelines": "Pipelines",
+    "pull-requests": "Pull Requests",
+    "webhooks": "Webhooks",
+    "settings": "Settings",
     "openPullReq": "Open pull requests"
   }
 }
