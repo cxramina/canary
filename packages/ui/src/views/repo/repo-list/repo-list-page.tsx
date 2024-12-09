@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { Button, ListActions, PaginationComponent, SearchBox, Spacer, Text } from '@/components'
 import { Filters, FiltersBar, type FilterValue, type SortValue } from '@components/filters'
 import useFilters from '@components/filters/use-filters'
+import { DemoTopBar } from '@views/demo/top-bar'
 import { formatDistanceToNow } from 'date-fns'
 import { debounce } from 'lodash-es'
 
@@ -383,6 +384,9 @@ const SandboxRepoListPage: FC<RepoListProps> = ({
 
   return (
     <>
+      <SandboxLayout.Header>
+        <DemoTopBar />
+      </SandboxLayout.Header>
       <SandboxLayout.Main hasHeader hasLeftPanel>
         <SandboxLayout.Content>
           <Spacer size={10} />

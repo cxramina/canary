@@ -84,6 +84,8 @@ export default function Breadcrumbs() {
     )
   }
 
+  return null // Use Demo version  elsewhere
+
   return (
     <Topbar.Root>
       <Topbar.Left>

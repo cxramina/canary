@@ -3,6 +3,7 @@ import { NavLink, Outlet, useLocation } from 'react-router-dom'
 
 import { Tabs, TabsList, TabsTrigger } from '@/components'
 import { SandboxLayout, TranslationStore } from '@/views'
+import { DemoTopBar } from '@views/demo/top-bar'
 
 export enum RepoTabsKeys {
   SUMMERY = 'summary',
@@ -29,6 +30,9 @@ export const RepoLayout = ({ useTranslationStore }: { useTranslationStore: () =>
 
   return (
     <>
+      <SandboxLayout.Header>
+        <DemoTopBar />
+      </SandboxLayout.Header>
       <SandboxLayout.SubHeader className="overflow-hidden">
         <Tabs variant="navigation" value={activeTab}>
           <TabsList>

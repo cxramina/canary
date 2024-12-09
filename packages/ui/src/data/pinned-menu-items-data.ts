@@ -5,9 +5,9 @@ export const getPinnedMenuItemsData = (t: TFunction): NavbarItemType[] => [
   {
     id: 0,
     iconName: 'repositories-gradient',
-    title: t('component:navbar.repositories'),
+    title: 'foo',
     description: 'Integrated & familiar git experience.',
-    to: '/repos',
+    to: '/new-ux/repos',
     permanentlyPinned: true
   },
   {
@@ -15,7 +15,7 @@ export const getPinnedMenuItemsData = (t: TFunction): NavbarItemType[] => [
     iconName: 'pipelines-gradient',
     title: t('component:navbar.pipelines'),
     description: 'Up to 4X faster than other solutions.',
-    to: '/pipelines',
+    to: '/new-ux/pipelines',
     permanentlyPinned: true
   }
 ]
