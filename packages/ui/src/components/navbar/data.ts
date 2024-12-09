@@ -15,7 +15,8 @@ export const getUserMenuItems = (t: TFunction): UserMenuItemType[] => [
     iconName: 'user',
     title: t('component:navbar.account', 'Account'),
     to: '/account',
-    isSeparated: false
+    isSeparated: false,
+    requiresAuth: true
   },
   {
     key: UserMenuKeys.THEME,
@@ -36,13 +37,23 @@ export const getUserMenuItems = (t: TFunction): UserMenuItemType[] => [
     iconName: 'settings-1',
     title: t('component:navbar.administration', 'Administration'),
     to: '/sandbox/settings/profile/general',
-    isSeparated: true
+    isSeparated: true,
+    requiresAuth: true
   },
   {
     key: UserMenuKeys.LOG_OUT,
     iconName: 'logOut',
     title: t('component:navbar.logout', 'Log out'),
     to: null,
-    isSeparated: true
+    isSeparated: true,
+    requiresAuth: true
+  },
+  {
+    key: UserMenuKeys.SIGN_IN,
+    iconName: 'logOut',
+    title: t('component:navbar.signin', 'Sign in'),
+    to: null,
+    isSeparated: true,
+    requiresAuth: false
   }
 ]

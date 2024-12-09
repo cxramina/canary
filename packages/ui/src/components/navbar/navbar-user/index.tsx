@@ -1,5 +1,5 @@
 import { Fragment, useMemo } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 
 import {
   Avatar,
@@ -92,6 +92,7 @@ interface NavbarUserProps {
 export const NavbarUser = ({ currentUser, handleCustomNav, handleLogOut, t }: NavbarUserProps) => {
   const username = currentUser?.display_name || currentUser?.uid || ''
   const userMenuItems = getUserMenuItems(t)
+  const navigate = useNavigate()
 
   const menuItems = useMemo(() => {
     return userMenuItems.map(({ key, iconName, title, to, isSeparated }) => {
@@ -103,6 +104,8 @@ export const NavbarUser = ({ currentUser, handleCustomNav, handleLogOut, t }: Na
             return handleCustomNav()
           case UserMenuKeys.LOG_OUT:
             return handleLogOut()
+          case UserMenuKeys.SIGN_IN:
+            return navigate('/signin')
           default:
             return
         }

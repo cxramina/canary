@@ -28,7 +28,8 @@ export enum UserMenuKeys {
   THEME = 'theme',
   CUSTOM_NAV = 'customNavigation',
   ADMINISTRATION = 'administration',
-  LOG_OUT = 'logOut'
+  LOG_OUT = 'logOut',
+  SIGN_IN = 'signIn'
 }
 
 interface UserMenuItemType {
@@ -37,6 +38,7 @@ interface UserMenuItemType {
   title: string
   to: string | null
   isSeparated: boolean
+  requiresAuth?: boolean
 }
 
 export type { MenuGroupType, NavbarItemType, UserMenuItemType, NavbarItemIdType }

@@ -17,5 +17,12 @@ export const getPinnedMenuItemsData = (t: TFunction): NavbarItemType[] => [
     description: 'Up to 4X faster than other solutions.',
     to: '/new-ux/pipelines',
     permanentlyPinned: true
+  },
+  {
+    id: 2,
+    iconName: 'execution-gradient',
+    title: t('component:navbar.executions'),
+    description: 'Optimize feature rollout velocity.',
+    to: '/executions'
   }
 ]

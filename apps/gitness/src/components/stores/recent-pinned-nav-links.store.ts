@@ -12,7 +12,29 @@ export interface NavState {
 }
 
 const navStateCreator: StateCreator<NavState> = set => ({
-  recent: [],
+  recent: [
+    {
+      id: 3,
+      iconName: 'database-gradient',
+      title: 'Database',
+      description: 'Manage all your infrastructure.',
+      to: '/databases'
+    },
+    {
+      id: 4,
+      iconName: 'artifacts-gradient',
+      title: 'Artifacts',
+      description: 'Validate service resilience.',
+      to: '/artifacts'
+    },
+    {
+      id: 10,
+      iconName: 'security-tests-gradient',
+      title: 'Security tests',
+      description: 'Shift left security testing.',
+      to: '/security-tests'
+    }
+  ],
   pinned: [],
 
   setRecent: (route, remove = false) =>
