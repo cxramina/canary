@@ -130,7 +130,7 @@ interface ContentProps {
   paddingClassName?: string
 }
 
-function Content({ children, maxWidth, className, paddingClassName = 'px-8 py-5 pb-24' }: ContentProps) {
+function Content({ children, maxWidth, className, paddingClassName = 'px-6 py-5 pb-24' }: ContentProps) {
   const widthClass = maxWidth ? `max-w-${maxWidth} mx-auto` : ''
 
   return <div className={cn(paddingClassName, widthClass, className)}>{children}</div>

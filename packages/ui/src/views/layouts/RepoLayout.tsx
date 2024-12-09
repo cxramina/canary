@@ -6,12 +6,12 @@ const RepoLayout: React.FC = () => {
   const baseClasses = 'h-full text-center flex items-center'
 
   const getLinkClasses = (isActive: boolean) =>
-    `${baseClasses} ${isActive ? 'text-primary border-b border-primary' : 'text-tertiary-background hover:text-primary'}`
+    `${baseClasses} ${isActive ? 'text-foreground-1 border-b border-foreground-1' : 'text-foreground-5 hover:text-foreground-1'}`
 
   return (
     <>
       <SandboxLayout.SubHeader>
-        <div className="inline-flex h-[44px] w-full items-center justify-start gap-6 border-b border-border-background px-8 text-muted-foreground">
+        <div className="inline-flex h-[44px] w-full items-center justify-start gap-6 border-b border-borders px-8">
           <NavLink to="summary" className={({ isActive }) => getLinkClasses(isActive)}>
             Summary
           </NavLink>

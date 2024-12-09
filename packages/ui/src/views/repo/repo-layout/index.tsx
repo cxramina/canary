@@ -6,11 +6,11 @@ import { SandboxLayout, TranslationStore } from '@/views'
 import { DemoTopBar } from '@views/demo/top-bar'
 
 export enum RepoTabsKeys {
-  SUMMERY = 'summary',
+  SUMMARY = 'summary',
   CODE = 'code',
   PIPELINES = 'pipelines',
   COMMITS = 'commits',
-  PULLS = 'pulls',
+  PULLS = 'pull Requests',
   WEBHOOKS = 'webhooks',
   BRANCHES = 'branches',
   SETTINGS = 'settings'
@@ -21,12 +21,16 @@ export const repoTabsKeysArr = Object.values(RepoTabsKeys)
 export const RepoLayout = ({ useTranslationStore }: { useTranslationStore: () => TranslationStore }) => {
   const location = useLocation()
   const { t } = useTranslationStore()
+  const baseClasses = 'h-full text-center flex items-center'
 
   const activeTab = useMemo(() => {
     const tab = repoTabsKeysArr.find(key => location.pathname.includes(key))
-
-    return tab ?? RepoTabsKeys.SUMMERY
+    return tab ?? RepoTabsKeys.SUMMARY
   }, [location.pathname])
+
+  const getLinkClasses = (isActive: boolean) => {
+    return `${baseClasses} ${isActive ? 'text-foreground-1 border-b border-foreground-5' : 'text-foreground-6 hover:text-foreground-1'}`
+  }
 
   return (
     <>
@@ -36,30 +40,13 @@ export const RepoLayout = ({ useTranslationStore }: { useTranslationStore: () =>
       <SandboxLayout.SubHeader className="overflow-hidden">
         <Tabs variant="navigation" value={activeTab}>
           <TabsList>
-            <NavLink to={RepoTabsKeys.SUMMERY}>
-              <TabsTrigger value="summary">{t('views:repos.summary', 'Summary')}</TabsTrigger>
-            </NavLink>
-            <NavLink to={RepoTabsKeys.CODE}>
-              <TabsTrigger value="code">{t('views:repos.files', 'Files')}</TabsTrigger>
-            </NavLink>
-            <NavLink to={RepoTabsKeys.PIPELINES}>
-              <TabsTrigger value="pipelines">{t('views:repos.pipelines', 'Pipelines')}</TabsTrigger>
-            </NavLink>
-            <NavLink to={RepoTabsKeys.COMMITS}>
-              <TabsTrigger value="commits">{t('views:repos.commits', 'Commits')}</TabsTrigger>
-            </NavLink>
-            <NavLink to={RepoTabsKeys.PULLS}>
-              <TabsTrigger value="pulls">{t('views:repos.pull-requests', 'Pull Requests')}</TabsTrigger>
-            </NavLink>
-            <NavLink to={RepoTabsKeys.WEBHOOKS}>
-              <TabsTrigger value="webhooks">{t('views:repos.webhooks', 'Webhooks')}</TabsTrigger>
-            </NavLink>
-            <NavLink to={RepoTabsKeys.BRANCHES}>
-              <TabsTrigger value="branches">{t('views:repos.branches', 'Branches')}</TabsTrigger>
-            </NavLink>
-            <NavLink to={RepoTabsKeys.SETTINGS}>
-              <TabsTrigger value="settings">{t('views:repos.settings', 'Settings')}</TabsTrigger>
-            </NavLink>
+            {repoTabsKeysArr.map(key => (
+              <NavLink key={key} to={key} className={({ isActive }) => getLinkClasses(isActive)}>
+                <TabsTrigger value={key}>
+                  {t(`views:repos.${key}`, key.charAt(0).toUpperCase() + key.slice(1))}
+                </TabsTrigger>
+              </NavLink>
+            ))}
           </TabsList>
         </Tabs>
       </SandboxLayout.SubHeader>
