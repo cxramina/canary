@@ -24,6 +24,7 @@ import {
   SettingsProjectNav
 } from '@harnessio/views'
 
+import AppMFE from './AppMFE'
 import { FileEditor } from './components/FileEditor'
 import { FileViewer } from './components/FileViewer'
 import RootWrapper from './components/RootWrapper'
@@ -97,7 +98,7 @@ import RepoWebhooksListPage from './pages/webhooks/repo-webhook-list'
 
 const BASE_URL_PREFIX = `${window.apiUrl || ''}/api/v1`
 
-export default function App() {
+export default function App({ renderUrl }: { renderUrl?: string }) {
   new CodeServiceAPIClient({
     urlInterceptor: (url: string) => `${BASE_URL_PREFIX}${url}`,
     responseInterceptor: (response: Response) => {
@@ -109,6 +110,8 @@ export default function App() {
       return response
     }
   })
+
+  const t = a => a
 
   const router = createBrowserRouter([
     {
@@ -702,6 +705,16 @@ export default function App() {
     }
   ])
 
+  const renderApp = () => {
+    if (!renderUrl) {
+      return <RouterProvider router={router} />
+    } else {
+      const basePath = `/ng${renderUrl}`
+      return <AppMFE basePath={basePath} />
+      // return <h1>{t('')}</h1>
+    }
+  }
+
   return (
     <AppProvider>
       <I18nextProvider i18n={i18n}>
@@ -709,9 +722,7 @@ export default function App() {
           <QueryClientProvider client={queryClient}>
             <TooltipProvider>
               <ExitConfirmProvider>
-                <NuqsAdapter>
-                  <RouterProvider router={router} />
-                </NuqsAdapter>
+                <NuqsAdapter>{renderApp()}</NuqsAdapter>
               </ExitConfirmProvider>
             </TooltipProvider>
           </QueryClientProvider>
