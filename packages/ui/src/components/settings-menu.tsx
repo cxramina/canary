@@ -22,7 +22,7 @@ export const SettingsMenu = ({ showSettingMenu, handleSettingsMenu, items }: Sys
         <SheetTitle className="sr-only">System Administration menu</SheetTitle>
         <NavbarSkeleton.Root className="w-[364px]" isSubMenu>
           <NavbarSkeleton.Content className="overflow-hidden">
-            <div className="h-[58px] px-5 flex justify-end items-center">
+            <div className="h-[55px] px-5 flex justify-end items-center">
               <div
                 className="h-full w-[55px] flex items-center justify-end group cursor-pointer"
                 onClick={handleSettingsMenu}

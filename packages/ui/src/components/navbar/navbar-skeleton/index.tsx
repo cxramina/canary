@@ -80,7 +80,7 @@ function Group({ children, title, topBorder, isSubMenu = false, titleClassName }
   return (
     <div
       className={cn(
-        'flex w-full flex-col px-5',
+        'flex w-full flex-col px-6',
         { 'border-borders-5 border-t pt-2.5': topBorder },
         isSubMenu ? 'pb-2.5' : 'gap-1.5 pb-3'
       )}
@@ -192,7 +192,7 @@ function Item({ icon, text, description, active, submenuItem, className }: ItemP
 
 function Footer({ children }: { children: React.ReactNode }) {
   return (
-    <div className="sticky bottom-0 z-20 grid h-[72px] items-center border-t border-borders-5 px-4">{children}</div>
+    <div className="sticky bottom-0 z-20 grid h-[72px] items-center border-t border-borders-5 px-6">{children}</div>
   )
 }
 
