@@ -10,6 +10,8 @@ export const Logout: React.FC = () => {
   useEffect(() => {
     if (isSuccess) {
       navigate('/signin') // Redirect to sign-in page
+      localStorage.removeItem('currentUser')
+      localStorage.removeItem('nav-items')
     }
   }, [isSuccess, navigate])
 
