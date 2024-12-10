@@ -39,25 +39,57 @@ export const Summary = ({ latestFile, files, useTranslationStore }: SummaryProps
         </TableHeader>
         <TableBody>
           {files.map(file => (
-            <TableRow key={file.id} onClick={() => navigate(file.path)} className="align-top">
+            <TableRow key={file.id} onClick={() => navigate(file.path)}>
               <TableCell>
                 <div className="flex cursor-pointer items-center gap-1.5">
                   <Icon
                     className={
-                      file.name === 'package.json' || file.name === '.gitignore' ? 'text-destructive' : 'text-icons-7'
+                      file.name === '.gitignore'
+                        ? 'text-emphasis'
+                        : file.name === 'package.json'
+                          ? 'text-destructive'
+                          : 'text-icons-7'
                     }
                     name={file.type === SummaryItemType.File ? 'file' : 'folder'}
                     size={16}
                   />
-                  <Text truncate color="primary">
+                  <Text
+                    truncate
+                    className={`truncate max-w-52 ${
+                      file.name === '.gitignore'
+                        ? 'text-emphasis'
+                        : file.name === 'package.json'
+                          ? 'text-destructive'
+                          : 'text-primary'
+                    }`}
+                  >
                     {file.name}
                   </Text>
                 </div>
               </TableCell>
               <TableCell>
                 <Text color="tertiaryBackground" className="inline-flex gap-2.5 line-clamp-1">
-                  {file.name === 'package.json' || file.name === '.gitignore' ? (
-                    <div className="flex items-center gap-3 h-full mt-1">
+                  {(file.name === 'package.json' || file.name === '.gitignore') && (
+                    <>
+                      {file.name === '.gitignore' && (
+                        <Text size={2} className="text-emphasis">
+                          Medium code vulnerability detected
+                        </Text>
+                      )}
+                      {file.name !== '.gitignore' && (
+                        <Text size={2} className="text-destructive">
+                          Critical code vulnerability detected
+                        </Text>
+                      )}
+                      &nbsp;&middot;&nbsp;
+                    </>
+                  )}
+                  {file.lastCommitMessage}
+                </Text>
+                {file.name === 'package.json' || file.name === '.gitignore' ? (
+                  <>
+                    <Spacer size={2} />
+                    <div className="flex items-center gap-3 h-full mt-1 py-1 w-full justify-between">
                       <Button
                         className="bg-background-7 text-12 font-medium"
                         borderRadius="full"
@@ -69,23 +101,11 @@ export const Summary = ({ latestFile, files, useTranslationStore }: SummaryProps
                         <Icon className="mr-1.5" name="sparks" size={12} />
                         Preview fix
                       </Button>
-                      {file.name === '.gitignore' && (
-                        <Badge size="default" theme="emphasis" className="rounded-full">
-                          Medium code vulnerability
-                        </Badge>
-                      )}
-                      {file.name !== '.gitignore' && (
-                        <Badge size="default" theme="destructive" className="rounded-full">
-                          Critical code vulnerability
-                        </Badge>
-                      )}
                     </div>
-                  ) : (
-                    ''
-                  )}
-                  <Spacer size={2} />
-                  {file.lastCommitMessage}
-                </Text>
+                  </>
+                ) : (
+                  ''
+                )}
               </TableCell>
               <TableCell className="text-right">
                 <Text color="tertiaryBackground" wrap="nowrap">

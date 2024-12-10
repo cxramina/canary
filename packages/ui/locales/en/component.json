@@ -75,7 +75,7 @@
     "services": "Services",
     "environments": "Environments",
     "connectors": "Connectors",
-    "delegates": "Delegeates",
+    "delegates": "Delegates",
     "secrets": "Secrets",
     "file-store": "File Store",
     "templates": "Templates",

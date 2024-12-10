@@ -277,7 +277,7 @@ export function RepoSummaryView({
                       gradientType="ai-button"
                     >
                       <Icon className="mr-1.5" name="sparks" size={12} />
-                      Preview fixes
+                      Preview fix
                     </Button>
                   </div>
                 </div>
