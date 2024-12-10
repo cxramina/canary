@@ -121,7 +121,7 @@ export function RepoSummaryView({
                 <ButtonGroup>
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                      <Button className="gap-x-2" variant="outline">
+                      <Button className="gap-x-2 px-3" variant="outline">
                         {t('views:repos.add-file', 'Add file')}
                         <Icon name="chevron-down" size={11} className="chevron-down" />
                       </Button>
@@ -238,7 +238,7 @@ export function RepoSummaryView({
                 <Text size={3} className="tracking-snug text-foreground-1 col-span-2">
                   Code vulnerabilities
                 </Text>
-                <Badge size={'sm'} theme="emphasis">
+                <Badge size={'default'} theme="success" className="pl-1.5 pr-2 rounded-full">
                   2
                 </Badge>
               </div>
@@ -296,7 +296,7 @@ export function RepoSummaryView({
                 <Text size={3} className="tracking-snug text-foreground-1 col-span-2">
                   Review PRs with AI
                 </Text>
-                <Badge size={'sm'} theme="emphasis">
+                <Badge size={'default'} theme="success" className="pl-1.5 pr-2 rounded-full">
                   1
                 </Badge>
               </div>
