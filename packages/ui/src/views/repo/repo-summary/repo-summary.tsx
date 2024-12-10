@@ -100,7 +100,7 @@ export function RepoSummaryView({
 
   return (
     <SandboxLayout.Main hasLeftPanel hasHeader hasSubHeader fullWidth>
-      <SandboxLayout.Columns columnWidths="1fr 220px">
+      <SandboxLayout.Columns columnWidths="1fr 330px">
         <SandboxLayout.Column>
           <SandboxLayout.Content>
             <ListActions.Root>
@@ -189,7 +189,7 @@ export function RepoSummaryView({
                 </Button>
               </div>
               <div className="relative flex w-full py-3 px-2.5 bg-background-4 flex-col gap-y-3 gap-x-2.5 text-center border rounded-md items-start">
-                <div className="grid grid-cols-2 gap-2">
+                <div className="grid grid-cols-3 gap-2 justify-center mx-auto">
                   <div className="flex flex-col justify-center rounded-md bg-background-4/90 py-1 px-3">
                     <Text size={3} className="leading-snug">
                       {default_branch_commit_count}
@@ -216,10 +216,18 @@ export function RepoSummaryView({
                   </div>
                   <div className="flex flex-col justify-center rounded-md bg-background-4/80 py-1 px-3">
                     <Text size={3} className="leading-snug">
-                      {pull_req_summary?.open_count || 0}
+                      {pull_req_summary?.open_count || 1}
                     </Text>
                     <Text size={1} className="leading-snug  text-foreground-5">
                       Open PRs
+                    </Text>
+                  </div>
+                  <div className="flex flex-col justify-center rounded-md bg-background-4/80 py-1 px-3">
+                    <Text size={3} className="leading-snug">
+                      3
+                    </Text>
+                    <Text size={1} className="leading-snug  text-foreground-5">
+                      AI To-dos
                     </Text>
                   </div>
                 </div>
@@ -240,11 +248,11 @@ export function RepoSummaryView({
                     <Text className="leading-snug text-foreground-1" size={2} weight="normal">
                       Package.json
                     </Text>
-                    <Spacer size={2} />
+                    <Spacer size={1} />
                     <Text className="leading-snug text-destructive" size={1}>
-                      1 critical issue
+                      1 critical vulnerability identified
                     </Text>
-                    <Spacer size={3} />
+                    <Spacer size={2} />
                     <Button
                       className="bg-background-7 text-12 font-medium"
                       borderRadius="full"
@@ -263,11 +271,11 @@ export function RepoSummaryView({
                     <Text className="leading-snug text-foreground-1" size={2} weight="normal">
                       .gitignore
                     </Text>
-                    <Spacer size={2} />
+                    <Spacer size={1} />
                     <Text className="leading-snug text-emphasis" size={1}>
-                      1 medium issue
+                      1 medium vulnerability identified
                     </Text>
-                    <Spacer size={3} />
+                    <Spacer size={2} />
                     <Button
                       className="bg-background-7 text-12 font-medium"
                       borderRadius="full"
@@ -297,11 +305,11 @@ export function RepoSummaryView({
                   <Text className="leading-snug text-foreground-1" size={2} weight="normal">
                     "Correct all CSS root vars for light mode"
                   </Text>
-                  <Spacer size={2} />
+                  <Spacer size={1} />
                   <Text className="leading-snug text-foreground-4" size={1}>
                     Raised by ARamina
                   </Text>
-                  <Spacer size={3} />
+                  <Spacer size={2} />
                   <Button
                     className="bg-background-7 text-12 font-medium"
                     borderRadius="full"

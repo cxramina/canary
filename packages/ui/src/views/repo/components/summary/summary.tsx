@@ -93,7 +93,6 @@ export const Summary = ({ latestFile, files, useTranslationStore }: SummaryProps
                       <Button
                         className="bg-background-7 text-12 font-medium"
                         borderRadius="full"
-                        size="sm"
                         padding="sm"
                         variant="gradient-border"
                         gradientType="ai-button"
