@@ -247,10 +247,10 @@ export function RepoSummaryView({
                   </div>
                   <div className="flex flex-col gap-y-2.5">
                     <div className="flex items-end gap-x-2">
-                      <Icon name="triangle-warning" size={16} className="text-[#E29B36]" />
+                      <Icon name="triangle-warning" size={16} className="text-foreground-danger" />
                       <span className="leading-tight text-foreground-1 font-medium">package.json</span>
                     </div>
-                    <span className="leading-tight text-[#E29B36]">1 critical vulnerability identified</span>
+                    <span className="leading-tight text-foreground-danger">1 critical vulnerability identified</span>
                   </div>
                   <Spacer size={4} />
                   <div>
@@ -273,10 +273,10 @@ export function RepoSummaryView({
                   </div>
                   <div className="flex flex-col gap-y-2.5">
                     <div className="flex items-end gap-x-2">
-                      <Icon name="triangle-warning" size={16} className="text-[#BFAA8C]" />
+                      <Icon name="triangle-warning" size={16} className="text-foreground-alert" />
                       <span className="leading-tight text-foreground-1 font-medium">.gitignore</span>
                     </div>
-                    <span className="leading-tight text-[#BFAA8C]">1 medium vulnerability identified</span>
+                    <span className="leading-tight text-foreground-alert">1 medium vulnerability identified</span>
                   </div>
                   <Spacer size={4} />
                   <div>

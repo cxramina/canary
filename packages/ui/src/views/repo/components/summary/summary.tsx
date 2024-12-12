@@ -45,9 +45,9 @@ export const Summary = ({ latestFile, files, useTranslationStore }: SummaryProps
                   <Icon
                     className={
                       file.name === '.gitignore'
-                        ? 'text-[#BFAA8C]'
+                        ? 'text-foreground-alert'
                         : file.name === 'package.json'
-                          ? 'text-[#E29B36]'
+                          ? 'text-foreground-danger'
                           : 'text-icons-7'
                     }
                     name={file.type === SummaryItemType.File ? 'file' : 'folder'}
@@ -57,9 +57,9 @@ export const Summary = ({ latestFile, files, useTranslationStore }: SummaryProps
                     truncate
                     className={`truncate max-w-52 ${
                       file.name === '.gitignore'
-                        ? 'text-[#BFAA8C]'
+                        ? 'text-foreground-alert'
                         : file.name === 'package.json'
-                          ? 'text-[#E29B36]'
+                          ? 'text-foreground-danger'
                           : 'text-primary'
                     }`}
                   >
@@ -72,12 +72,12 @@ export const Summary = ({ latestFile, files, useTranslationStore }: SummaryProps
                   {(file.name === 'package.json' || file.name === '.gitignore') && (
                     <>
                       {file.name === '.gitignore' && (
-                        <Text size={2} className="text-[#BFAA8C]">
+                        <Text size={2} className="text-foreground-alert">
                           Medium code vulnerability detected
                         </Text>
                       )}
                       {file.name !== '.gitignore' && (
-                        <Text size={2} className="text-[#E29B36]">
+                        <Text size={2} className="text-foreground-danger">
                           Critical code vulnerability detected
                         </Text>
                       )}
