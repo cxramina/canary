@@ -45,6 +45,7 @@ import DashboardsGradient from '../icons/dashboards-gradient.svg'
 import Dashboards from '../icons/dashboards-icon.svg'
 import DatabaseGradient from '../icons/database-gradient.svg'
 import Database from '../icons/database-icon.svg'
+import DemoWarning from '../icons/demo-warning.svg'
 import DevEnvsGradient from '../icons/dev-envs-gradient.svg'
 import DevEnvs from '../icons/dev-envs-icon.svg'
 import DevInsightsGradient from '../icons/dev-insights-gradient.svg'
@@ -321,7 +322,8 @@ const IconNameMap = {
   'chaos-engineering': ChaosEngineering,
   'dashboards-gradient': DashboardsGradient,
   dashboards: Dashboards,
-  'menu-dots': MenuDots
+  'menu-dots': MenuDots,
+  'demo-warning': DemoWarning
   // fork: Fork
 } satisfies Record<string, React.FunctionComponent<React.SVGProps<SVGSVGElement>>>
 

@@ -188,48 +188,46 @@ export function RepoSummaryView({
                   <Icon name="more-dots-fill" size={12} className="text-icons-3" />
                 </Button>
               </div>
-              <div className="relative flex w-full py-3 px-2.5 bg-background-4 flex-col gap-y-3 gap-x-2.5 text-center border rounded-md items-start">
-                <div className="grid grid-cols-3 gap-2 justify-center mx-auto">
-                  <div className="flex flex-col justify-center rounded-md bg-background-4/90 py-1 px-3">
-                    <Text size={3} className="leading-snug">
-                      {default_branch_commit_count}
-                    </Text>
-                    <Text size={1} className="leading-snug text-foreground-5">
-                      {t('views:repos.commits', 'Commits')}
-                    </Text>
-                  </div>
-                  <div className="flex flex-col justify-center rounded-md bg-background-4/80 py-1 px-3">
-                    <Text size={3} className="leading-snug">
-                      {branch_count}
-                    </Text>
-                    <Text size={1} className="leading-snug text-foreground-5">
-                      {t('views:repos.branches', 'Branches')}
-                    </Text>
-                  </div>
-                  <div className="flex flex-col justify-center rounded-md bg-background-4/80 py-1 px-3">
-                    <Text size={3} className="leading-snug">
-                      {tag_count}
-                    </Text>
-                    <Text size={1} className="leading-snug text-foreground-5">
-                      {t('views:repos.tags', 'Tags')}
-                    </Text>
-                  </div>
-                  <div className="flex flex-col justify-center rounded-md bg-background-4/80 py-1 px-3">
-                    <Text size={3} className="leading-snug">
-                      {pull_req_summary?.open_count || 1}
-                    </Text>
-                    <Text size={1} className="leading-snug  text-foreground-5">
-                      Open PRs
-                    </Text>
-                  </div>
-                  <div className="flex flex-col justify-center rounded-md bg-background-4/80 py-1 px-3">
-                    <Text size={3} className="leading-snug">
-                      3
-                    </Text>
-                    <Text size={1} className="leading-snug  text-foreground-5">
-                      AI To-dos
-                    </Text>
-                  </div>
+              <div className="flex flex-col w-full py-3 px-4 bg-background-2 gap-y-4 border border-borders-1 rounded-md">
+                <div className="flex justify-between items-center rounded-md w-full">
+                  <Text size={2} className="leading-snug text-foreground-5">
+                    {t('views:repos.commits', 'Commits')}
+                  </Text>
+                  <Text size={2} className="leading-snug text-white">
+                    {default_branch_commit_count}
+                  </Text>
+                </div>
+                <div className="flex justify-between items-center rounded-md w-full">
+                  <Text size={2} className="leading-snug text-foreground-5">
+                    {t('views:repos.branches', 'Branches')}
+                  </Text>
+                  <Text size={2} className="leading-snug text-white">
+                    {branch_count}
+                  </Text>
+                </div>
+                <div className="flex justify-between items-center rounded-md w-full">
+                  <Text size={2} className="leading-snug text-foreground-5">
+                    {t('views:repos.tags', 'Tags')}
+                  </Text>
+                  <Text size={2} className="leading-snug text-white">
+                    {tag_count}
+                  </Text>
+                </div>
+                <div className="flex justify-between items-center rounded-md w-full">
+                  <Text size={2} className="leading-snug text-foreground-5">
+                    {t('views:repos.open-prs', 'Open PRs')}
+                  </Text>
+                  <Text size={2} className="leading-snug text-white">
+                    {pull_req_summary?.open_count || 1}
+                  </Text>
+                </div>
+                <div className="flex justify-between items-center rounded-md w-full">
+                  <Text size={2} className="leading-snug text-foreground-5">
+                    AI To-dos
+                  </Text>
+                  <Text size={2} className="leading-snug text-white">
+                    3
+                  </Text>
                 </div>
               </div>
             </div>
@@ -238,21 +236,24 @@ export function RepoSummaryView({
                 <Text size={3} className="tracking-snug text-foreground-1 col-span-2">
                   Code vulnerabilities
                 </Text>
-                <Badge size={'default'} theme="success" className="pl-1.5 pr-2 rounded-full">
+                <span className="rounded-full h-[22px] w-[22px] bg-background-2 text-14 border border-borders-1 flex items-center justify-center">
                   2
-                </Badge>
+                </span>
               </div>
-              <div className="flex flex-col gap-5">
-                <div className="relative flex w-full py-5 px-5 bg-background-4 flex-col items-center gap-2.5 text-center border rounded-md">
-                  <div className="flex flex-col items-center gap-1">
-                    <Text className="leading-snug text-foreground-1" size={2} weight="normal">
-                      Package.json
-                    </Text>
-                    <Spacer size={1} />
-                    <Text className="leading-snug text-destructive" size={1}>
-                      1 critical vulnerability identified
-                    </Text>
-                    <Spacer size={2} />
+              <div className="flex flex-col gap-y-4">
+                <div className="relative flex w-full p-4 bg-background-2 border border-borders-1 flex-col rounded-md overflow-hidden">
+                  <div className="absolute -top-[35px] -right-[35px]">
+                    <Icon name="demo-warning" size={108} />
+                  </div>
+                  <div className="flex flex-col gap-y-2.5">
+                    <div className="flex items-end gap-x-2">
+                      <Icon name="triangle-warning" size={16} className="text-[#E29B36]" />
+                      <span className="leading-tight text-foreground-1 font-medium">package.json</span>
+                    </div>
+                    <span className="leading-tight text-[#E29B36]">1 critical vulnerability identified</span>
+                  </div>
+                  <Spacer size={4} />
+                  <div>
                     <Button
                       className="bg-background-7 text-12 font-medium"
                       borderRadius="full"
@@ -266,16 +267,19 @@ export function RepoSummaryView({
                     </Button>
                   </div>
                 </div>
-                <div className="relative flex w-full py-5 px-5 bg-background-4 flex-col items-center gap-2.5 text-center border rounded-md">
-                  <div className="flex flex-col items-center gap-1">
-                    <Text className="leading-snug text-foreground-1" size={2} weight="normal">
-                      .gitignore
-                    </Text>
-                    <Spacer size={1} />
-                    <Text className="leading-snug text-emphasis" size={1}>
-                      1 medium vulnerability identified
-                    </Text>
-                    <Spacer size={2} />
+                <div className="relative flex w-full p-4 bg-background-2 border border-borders-1 flex-col rounded-md overflow-hidden">
+                  <div className="absolute -top-[35px] -right-[35px]">
+                    <Icon name="demo-warning" size={108} />
+                  </div>
+                  <div className="flex flex-col gap-y-2.5">
+                    <div className="flex items-end gap-x-2">
+                      <Icon name="triangle-warning" size={16} className="text-[#BFAA8C]" />
+                      <span className="leading-tight text-foreground-1 font-medium">.gitignore</span>
+                    </div>
+                    <span className="leading-tight text-[#BFAA8C]">1 medium vulnerability identified</span>
+                  </div>
+                  <Spacer size={4} />
+                  <div>
                     <Button
                       className="bg-background-7 text-12 font-medium"
                       borderRadius="full"
@@ -296,20 +300,17 @@ export function RepoSummaryView({
                 <Text size={3} className="tracking-snug text-foreground-1 col-span-2">
                   Review PRs with AI
                 </Text>
-                <Badge size={'default'} theme="success" className="pl-1.5 pr-2 rounded-full">
+                <span className="rounded-full h-[22px] w-[22px] bg-background-2 text-14 border border-borders-1 flex items-center justify-center">
                   1
-                </Badge>
+                </span>
               </div>
-              <div className="relative flex w-full py-5 px-5 bg-background-4 flex-col items-center gap-2.5 text-center border rounded-md">
-                <div className="flex flex-col items-center gap-1">
-                  <Text className="leading-snug text-foreground-1" size={2} weight="normal">
-                    "Correct all CSS root vars for light mode"
-                  </Text>
-                  <Spacer size={1} />
-                  <Text className="leading-snug text-foreground-4" size={1}>
-                    Raised by ARamina
-                  </Text>
-                  <Spacer size={2} />
+              <div className="flex w-full p-4 bg-background-2 border border-borders-1 flex-col rounded-md">
+                <div className="flex flex-col gap-y-2.5">
+                  <span className="leading-tight text-white">"Correct all CSS root vars for light mode"</span>
+                  <span className="leading-tight text-foreground-5">Raised by ARamina</span>
+                </div>
+                <Spacer size={4} />
+                <div>
                   <Button
                     className="bg-background-7 text-12 font-medium"
                     borderRadius="full"
@@ -319,7 +320,7 @@ export function RepoSummaryView({
                     gradientType="ai-button"
                   >
                     <Icon className="mr-1.5" name="sparks" size={12} />
-                    Start AI review
+                    Preview fix
                   </Button>
                 </div>
               </div>
