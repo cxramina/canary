@@ -69,30 +69,20 @@
     "@types/pluralize": "^0.0.33",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
-<<<<<<< HEAD
-    "@vitejs/plugin-react-swc": "^3.7.2",
-    "@vitest/coverage-istanbul": "^2.1.8",
-=======
     "@vitejs/plugin-react-swc": "^3.5.0",
     "babel-loader": "^9.1.3",
     "css-loader": "^7.1.2",
->>>>>>> f2d108aa (Working button expose)
     "eslint": "^8.57.1",
     "eslint-plugin-react-hooks": "^5.1.0-rc.0",
     "eslint-plugin-react-refresh": "^0.4.9",
     "globals": "^15.9.0",
     "html-webpack-plugin": "^5.6.0",
     "immer": "^10.1.1",
-<<<<<<< HEAD
-    "npm-run-all": "^4.1.5",
-    "prettier": "^3.0.3",
-=======
     "postcss-loader": "^8.1.1",
     "prettier": "^3.0.3",
     "react-router-dom": "^6.26.0",
     "style-loader": "^4.0.0",
     "swc-loader": "^0.2.6",
->>>>>>> f2d108aa (Working button expose)
     "tailwindcss": "^3.4.4",
     "ts-loader": "^9.5.1",
     "typescript": "^5.5.3",
