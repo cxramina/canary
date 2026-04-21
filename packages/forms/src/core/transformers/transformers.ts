@@ -96,10 +96,23 @@ export function unsetEmptyStringOutputTransformer(): IOutputTransformerFunc {
 
 export function shorthandObjectInputTransformer(parentPath: string): IInputTransformerFunc {
   return function (value: unknown, values: Record<string, unknown>) {
-    const parentStr = get(values, parentPath)
+    const parent = get(values, parentPath)
 
-    if (typeof parentStr === 'string') {
-      return { value: parentStr }
+    // If parent is a string (shorthand), extract it to the child field
+    if (typeof parent === 'string') {
+      return { value: parent }
+    }
+
+    // If parent is a primitive (number/boolean), we can't access child properties
+    // Skip creating the child path
+    if (typeof parent === 'number' || typeof parent === 'boolean') {
+      return undefined
+    }
+
+    // If parent is object/array, use the actual child value
+    // If value is undefined, don't create the path
+    if (value === undefined) {
+      return undefined
     }
 
     return { value }
@@ -126,12 +139,21 @@ export function shorthandObjectOutputTransformer(parentPath: string): IOutputTra
 
 export function shorthandArrayInputTransformer(parentPath: string): IInputTransformerFunc {
   return function (value: unknown, values: Record<string, unknown>) {
-    if (typeof value === 'undefined') return undefined
+    const parent = get(values, parentPath)
 
-    const parentStr = get(values, parentPath)
+    // If parent is a string (shorthand), wrap it in array
+    if (typeof parent === 'string') {
+      return { value: [parent] }
+    }
 
-    if (typeof parentStr === 'string') {
-      return { value: [parentStr] }
+    // If parent is a primitive (number/boolean), we can't access child properties
+    if (typeof parent === 'number' || typeof parent === 'boolean') {
+      return undefined
+    }
+
+    // If value is undefined, don't create the path
+    if (value === undefined) {
+      return undefined
     }
 
     return { value }

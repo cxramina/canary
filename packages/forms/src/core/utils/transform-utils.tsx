@@ -22,7 +22,26 @@ export function inputTransformValues(values: Record<string, any>, transformerIte
         : [transformItem.inputTransform]
 
       inputTransform.forEach(inTransform => {
-        const rawValue = get(retValues, transformItem.path)
+        // IMPORTANT: Check if we're accessing a child property of a primitive
+        // If so, don't call get() as it would access prototype methods
+        let rawValue: any
+        const pathParts = transformItem.path.split('.')
+
+        if (pathParts.length > 1) {
+          const parentPath = pathParts.slice(0, -1).join('.')
+          const parentValue = get(retValues, parentPath)
+
+          // If parent is primitive, pass undefined to avoid prototype access
+          // The transformer will read the parent directly if it needs to
+          if (typeof parentValue === 'string' || typeof parentValue === 'number' || typeof parentValue === 'boolean') {
+            rawValue = undefined
+          } else {
+            rawValue = get(retValues, transformItem.path)
+          }
+        } else {
+          rawValue = get(retValues, transformItem.path)
+        }
+
         const transformedObj = inTransform(rawValue, retValues)
         if (transformedObj) {
           set(retValues, transformedObj.path ?? transformItem.path, transformedObj.value)
@@ -106,7 +125,7 @@ export function getTransformers(formDefinition: IFormDefinition): TransformItem[
 
   ret.sort((a, b) => {
     if (a.level === b.level) return !a.isPrimitive ? -1 : 1
-    return a.level > b.level ? -1 : 1
+    return a.level < b.level ? -1 : 1 // Shallower first (parent before child)
   })
 
   return ret
