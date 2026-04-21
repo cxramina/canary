@@ -87,6 +87,205 @@ const [cards, setCards] = useState<CardData[]>([
 ])
 ```
 
+## Example with Actions
+
+This example shows how to add interactive elements like close buttons to your draggable cards:
+
+<DocsPage.ComponentExample
+  client:only
+  code={`() => {
+  const [cards, setCards] = React.useState([
+    {
+      id: '1',
+      title: (
+        <Layout.Horizontal align="center" className="flex-1">
+          <Layout.Vertical gap="none" className="flex-1">
+            <Text variant="heading-base" color="foreground-1">
+              Eiffel Tower
+            </Text>
+            <Text variant="caption-normal" className="text-muted">
+              9:00 AM - 11:30 AM
+            </Text>
+          </Layout.Vertical>
+          <Button 
+            iconOnly
+            variant="ghost"
+            size="sm"
+            tooltipProps={{ content: "Remove from itinerary" }}
+            onClick={(e) => {
+              e.stopPropagation()
+              setCards(cards.filter(c => c.id !== '1'))
+            }}
+          >
+            <IconV2 name="xmark" skipSize />
+          </Button>
+        </Layout.Horizontal>
+      ),
+      description: 'Visit the iconic iron lattice tower. Book tickets in advance to skip the lines.'
+    },
+    {
+      id: '2',
+      title: (
+        <Layout.Horizontal align="center" className="flex-1">
+          <Layout.Vertical gap="none" className="flex-1">
+            <Text variant="heading-base" color="foreground-1">
+              Louvre Museum
+            </Text>
+            <Text variant="caption-normal" className="text-muted">
+              12:00 PM - 3:00 PM
+            </Text>
+          </Layout.Vertical>
+          <Button 
+            iconOnly
+            variant="ghost"
+            size="sm"
+            tooltipProps={{ content: "Remove from itinerary" }}
+            onClick={(e) => {
+              e.stopPropagation()
+              setCards(cards.filter(c => c.id !== '2'))
+            }}
+          >
+            <IconV2 name="xmark" skipSize />
+          </Button>
+        </Layout.Horizontal>
+      ),
+      description: 'Explore world-famous art collections including the Mona Lisa and Venus de Milo.'
+    },
+    {
+      id: '3',
+      title: (
+        <Layout.Horizontal align="center" className="flex-1">
+          <Layout.Vertical gap="none" className="flex-1">
+            <Text variant="heading-base" color="foreground-1">
+              Seine River Cruise
+            </Text>
+            <Text variant="caption-normal" className="text-muted">
+              6:00 PM - 8:00 PM
+            </Text>
+          </Layout.Vertical>
+          <Button 
+            iconOnly
+            variant="ghost"
+            size="sm"
+            tooltipProps={{ content: "Remove from itinerary" }}
+            onClick={(e) => {
+              e.stopPropagation()
+              setCards(cards.filter(c => c.id !== '3'))
+            }}
+          >
+            <IconV2 name="xmark" skipSize />
+          </Button>
+        </Layout.Horizontal>
+      ),
+      description: 'Enjoy a scenic evening cruise with dinner and stunning views of Paris landmarks.'
+    }
+  ])
+
+return <DraggableCardList cards={cards} setCards={setCards} />
+}`}
+/>
+
+## Grip Position Outside
+
+The draggable card supports placing the grip handle outside the card container using `gripPosition="outside"`. This creates a cleaner card appearance with the drag handle positioned to the left of the card.
+
+<DocsPage.ComponentExample
+  client:only
+  code={`() => {
+  const [cards, setCards] = React.useState([
+    {
+      id: '1',
+      gripPosition: 'outside',
+      title: (
+        <Layout.Horizontal align="center" className="flex-1">
+          <Layout.Vertical gap="none" className="flex-1">
+            <Text variant="heading-base" color="foreground-1">
+              Product Backlog Review
+            </Text>
+            <Text variant="caption-normal" className="text-muted">
+              Monday, 10:00 AM - 11:00 AM
+            </Text>
+          </Layout.Vertical>
+          <Button 
+            iconOnly
+            variant="ghost"
+            size="sm"
+            tooltipProps={{ content: "Remove meeting" }}
+            onClick={(e) => {
+              e.stopPropagation()
+              setCards(cards.filter(c => c.id !== '1'))
+            }}
+          >
+            <IconV2 name="xmark" skipSize />
+          </Button>
+        </Layout.Horizontal>
+      ),
+      description: 'Weekly review of backlog items and sprint planning preparation.'
+    },
+    {
+      id: '2',
+      gripPosition: 'outside',
+      title: (
+        <Layout.Horizontal align="center" className="flex-1">
+          <Layout.Vertical gap="none" className="flex-1">
+            <Text variant="heading-base" color="foreground-1">
+              Design System Sync
+            </Text>
+            <Text variant="caption-normal" className="text-muted">
+              Tuesday, 2:00 PM - 3:00 PM
+            </Text>
+          </Layout.Vertical>
+          <Button 
+            iconOnly
+            variant="ghost"
+            size="sm"
+            tooltipProps={{ content: "Remove meeting" }}
+            onClick={(e) => {
+              e.stopPropagation()
+              setCards(cards.filter(c => c.id !== '2'))
+            }}
+          >
+            <IconV2 name="xmark" skipSize />
+          </Button>
+        </Layout.Horizontal>
+      ),
+      description: 'Discuss component library updates and design token changes.'
+    },
+    {
+      id: '3',
+      gripPosition: 'outside',
+      title: (
+        <Layout.Horizontal align="center" className="flex-1">
+          <Layout.Vertical gap="none" className="flex-1">
+            <Text variant="heading-base" color="foreground-1">
+              Sprint Retrospective
+            </Text>
+            <Text variant="caption-normal" className="text-muted">
+              Friday, 4:00 PM - 5:00 PM
+            </Text>
+          </Layout.Vertical>
+          <Button 
+            iconOnly
+            variant="ghost"
+            size="sm"
+            tooltipProps={{ content: "Remove meeting" }}
+            onClick={(e) => {
+              e.stopPropagation()
+              setCards(cards.filter(c => c.id !== '3'))
+            }}
+          >
+            <IconV2 name="xmark" skipSize />
+          </Button>
+        </Layout.Horizontal>
+      ),
+      description: 'Team reflection on sprint achievements and areas for improvement.'
+    }
+  ])
+
+return <DraggableCardList cards={cards} setCards={setCards} />
+}`}
+/>
+
 ## Anatomy
 
 The draggable card system consists of two main components:

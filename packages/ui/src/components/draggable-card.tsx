@@ -63,23 +63,9 @@ export const DraggableCard = ({
 
   const cardBody = (
     <>
-      <div
-        className={cn(
-          'w-full min-w-0',
-          gripPosition === 'outside'
-            ? cn(description && 'border-b')
-            : cn('-mx-cn-md px-cn-md', description && 'border-b')
-        )}
-      >
-        <div
-          className={cn(
-            'flex w-full min-w-0 items-center gap-cn-xs',
-            description && gripPosition === 'inside' && 'pb-cn-md'
-          )}
-        >
-          {gripPosition === 'inside' ? grip : null}
-          {title}
-        </div>
+      <div className={cn('flex w-full min-w-0 items-center gap-cn-xs', description && 'border-b pb-cn-md')}>
+        {gripPosition === 'inside' ? grip : null}
+        {title}
       </div>
       {description && <div className="mt-cn-md">{description}</div>}
     </>
@@ -87,10 +73,10 @@ export const DraggableCard = ({
 
   if (gripPosition === 'outside') {
     return (
-      <div ref={setNodeRef} style={style} className="flex w-full min-w-0 items-center gap-cn-xs">
+      <div ref={setNodeRef} style={style} className="gap-cn-xs flex w-full min-w-0 items-center">
         {grip}
         <Card.Root className={cn('min-w-0 w-full flex-1', className)} {...cardProps}>
-          <Card.Content className="min-w-0 w-full">{cardBody}</Card.Content>
+          <Card.Content className="w-full min-w-0">{cardBody}</Card.Content>
         </Card.Root>
       </div>
     )
@@ -98,7 +84,7 @@ export const DraggableCard = ({
 
   return (
     <Card.Root ref={setNodeRef} style={style} className={cn('w-full min-w-0', className)} {...cardProps}>
-      <Card.Content className="min-w-0 w-full">{cardBody}</Card.Content>
+      <Card.Content className="w-full min-w-0">{cardBody}</Card.Content>
     </Card.Root>
   )
 }
