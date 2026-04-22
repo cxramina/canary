@@ -1,4 +1,4 @@
-import { cloneDeep, get, isArray, pick, set, unset } from 'lodash-es'
+import { cloneDeep, get, isArray, set, unset } from 'lodash-es'
 
 import { IFormDefinition, IInputDefinition } from '../../types/types'
 import { removeTemporaryFieldsValue } from './temporary-field-utils'
@@ -53,10 +53,20 @@ export function inputTransformValues(values: Record<string, any>, transformerIte
 }
 
 /** convert form model to data model using output transformer functions  */
-export function outputTransformValues(values: Record<string, any>, transformerItems: TransformItem[]) {
+export function outputTransformValues(
+  values: Record<string, any>,
+  transformerItems: TransformItem[],
+  cleanOutput?: boolean
+) {
   const pathsToUnset: string[] = []
 
-  const retValues = cloneDeep(values)
+  let targetValues: Record<string, any> = {}
+  if (!cleanOutput) {
+    targetValues = cloneDeep(values)
+  }
+
+  const rawValues = cloneDeep(values)
+
   transformerItems.forEach(transformItem => {
     if (transformItem.outputTransform) {
       const outputTransform = isArray(transformItem.outputTransform)
@@ -64,16 +74,16 @@ export function outputTransformValues(values: Record<string, any>, transformerIt
         : [transformItem.outputTransform]
 
       outputTransform.forEach(outTransform => {
-        const rawValue = get(retValues, transformItem.path)
-        const transformedObj = outTransform(rawValue, retValues)
+        const rawValue = get(rawValues, transformItem.path)
+        const transformedObj = outTransform(rawValue, rawValues)
         if (transformedObj) {
           if (transformedObj.path) {
-            set(retValues, transformedObj.path, transformedObj.value)
+            set(targetValues, transformedObj.path, transformedObj.value)
             if (transformedObj.unset) {
               pathsToUnset.push(transformItem.path)
             }
           } else {
-            set(retValues, transformItem.path, transformedObj.value)
+            set(targetValues, transformItem.path, transformedObj.value)
           }
         }
       })
@@ -81,10 +91,10 @@ export function outputTransformValues(values: Record<string, any>, transformerIt
   })
 
   pathsToUnset.forEach(path => {
-    unset(retValues, path)
+    unset(targetValues, path)
   })
 
-  return retValues
+  return targetValues
 }
 
 function flattenInputsRec(inputs: IInputDefinition[]): IInputDefinition[] {
@@ -99,8 +109,18 @@ function flattenInputsRec(inputs: IInputDefinition[]): IInputDefinition[] {
   return flattenInputs
 }
 
+/** Default identity transformer that returns the value as-is, skipping undefined */
+const defaultInputTransform: IInputDefinition['inputTransform'] = (value: any) => {
+  if (value === undefined) return undefined
+  return { value }
+}
+const defaultOutputTransform: IInputDefinition['outputTransform'] = (value: any) => {
+  if (value === undefined) return undefined
+  return { value }
+}
+
 /** Collect all input/output transformer functions  */
-export function getTransformers(formDefinition: IFormDefinition): TransformItem[] {
+export function getTransformers(formDefinition: IFormDefinition, addDefaultTransformer?: boolean): TransformItem[] {
   const flattenInputs = flattenInputsRec(formDefinition.inputs)
 
   const ret = flattenInputs.reduce<TransformItem[]>((acc, input) => {
@@ -112,9 +132,27 @@ export function getTransformers(formDefinition: IFormDefinition): TransformItem[
       input.inputType === 'textarea' ||
       input.inputType === 'select'
 
-    if (input.inputTransform || input.outputTransform) {
+    const hasInputTransform = !!input.inputTransform
+    const hasOutputTransform = !!input.outputTransform
+
+    // Don't add default transformers for container inputs or list/array types
+    const isContainerInput = Array.isArray(input.inputs) && input.inputs.length > 0
+    const isListOrArrayInput = input.inputType === 'list' || input.inputType === 'array'
+    const shouldSkipDefaultTransformer = isContainerInput || isListOrArrayInput
+
+    if (hasInputTransform || hasOutputTransform) {
       acc.push({
-        ...pick(input, 'path', 'inputTransform', 'outputTransform'),
+        path: input.path,
+        inputTransform: input.inputTransform,
+        outputTransform: input.outputTransform,
+        level: input.path.split('.').length,
+        isPrimitive
+      })
+    } else if (addDefaultTransformer && !shouldSkipDefaultTransformer) {
+      acc.push({
+        path: input.path,
+        inputTransform: defaultInputTransform,
+        outputTransform: defaultOutputTransform,
         level: input.path.split('.').length,
         isPrimitive
       })
@@ -174,11 +212,14 @@ export function convertFormModelToData(
   options: {
     /* path to preserve */
     preserve?: string[]
+    /* produces clean output with only transformed fields (useful for API payloads) */
+    cleanOutput?: boolean
   } = {}
 ): Record<string, any> {
-  const transformers = getTransformers(formDefinition)
+  const addDefaultTransformer = options.cleanOutput
+  const transformers = getTransformers(formDefinition, addDefaultTransformer)
   let data = unsetHiddenInputsValues(formDefinition, formData, metadata, options)
-  data = outputTransformValues(data, transformers)
+  data = outputTransformValues(data, transformers, options.cleanOutput)
   data = removeTemporaryFieldsValue(data)
   return data
 }
