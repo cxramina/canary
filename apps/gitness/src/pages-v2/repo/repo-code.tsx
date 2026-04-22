@@ -90,7 +90,7 @@ export const RepoCode = () => {
   })
 
   const latestFiles = useMemo(() => {
-    const { author, message, sha } = repoDetails?.latest_commit || {}
+    const { author, message, sha, signature } = repoDetails?.latest_commit || {}
 
     return {
       user: {
@@ -98,7 +98,8 @@ export const RepoCode = () => {
       },
       lastCommitMessage: message || '',
       timestamp: author?.when ?? '',
-      sha: sha && sha
+      sha: sha && sha,
+      signature
     }
   }, [repoDetails?.latest_commit])
 

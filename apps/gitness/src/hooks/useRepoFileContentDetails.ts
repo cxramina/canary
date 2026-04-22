@@ -103,7 +103,8 @@ export const useRepoFileContentDetails = ({
       lastCommitMessage: item?.last_commit?.message || '',
       timestamp: item?.last_commit?.author?.when ?? '',
       user: { name: item?.last_commit?.author?.identity?.name || '' },
-      sha: item?.last_commit?.sha && getTrimmedSha(item.last_commit.sha)
+      sha: item?.last_commit?.sha && getTrimmedSha(item.last_commit.sha),
+      signature: item?.last_commit?.signature
     }),
     []
   )
